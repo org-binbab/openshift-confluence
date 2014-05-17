@@ -1,0 +1,7 @@
+source $OPENSHIFT_REPO_DIR/confluence/version
+export CONFLUENCE_DOWNLOAD_FILE=atlassian-confluence-${CONFLUENCE_VERSION}.tar.gz
+export CONFLUENCE_DOWNLOAD_URL="http://www.atlassian.com/software/confluence/downloads/binary/${CONFLUENCE_DOWNLOAD_FILE}"
+export CONFLUENCE_BASE=$OPENSHIFT_DEPENDENCIES_DIR/$(basename $CONFLUENCE_DOWNLOAD_FILE .tar.gz)
+export CONFLUENCE_DATA=$OPENSHIFT_DATA_DIR/confluence-data
+export CONFLUENCE_CLEANUP=$(basename $CONFLUENCE_BASE $CONFLUENCE_VERSION)
+export OPENSHIFT_POSTGRESQL_DB_NAME=$PGDATABASE

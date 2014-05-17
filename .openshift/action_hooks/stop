@@ -1,0 +1,11 @@
+#!/bin/bash
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+source $OPENSHIFT_REPO_DIR/.openshift/action_hooks/vars.inc
+
+# The logic to stop your application should be put in this script.
+if [ -z "$(pgrep -u $(whoami) java)" ]
+then
+    client_result "Confluence is already stopped"
+else
+    $CONFLUENCE_BASE/bin/stop-confluence.sh
+fi

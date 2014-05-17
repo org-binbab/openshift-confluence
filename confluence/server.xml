@@ -1,0 +1,29 @@
+<Server port="8111" shutdown="SHUTDOWN" debug="0">
+    <Service name="Tomcat-Standalone">
+        <Connector className="org.apache.coyote.tomcat4.CoyoteConnector" port="8080" minProcessors="5"
+                   address="%OPENSHIFT_DIY_IP%"
+                   maxProcessors="75"
+                   enableLookups="false" redirectPort="8443" acceptCount="10" debug="0" connectionTimeout="20000"
+                   useURIValidationHack="false" URIEncoding="UTF-8"/>
+
+        <Engine name="Standalone" defaultHost="localhost" debug="0">
+
+            <Host name="localhost" debug="0" appBase="webapps" unpackWARs="true" autoDeploy="false">
+
+                <Context path="" docBase="../confluence" debug="0" reloadable="false" useHttpOnly="true">
+                    <Resource name="jdbc/confluence" auth="Container" type="javax.sql.DataSource"
+                              username="%OPENSHIFT_POSTGRESQL_DB_USERNAME%"
+                              password="%OPENSHIFT_POSTGRESQL_DB_PASSWORD%"
+                              driverClassName="org.postgresql.Driver"
+                              url="jdbc:postgresql://%OPENSHIFT_POSTGRESQL_DB_HOST%:%OPENSHIFT_POSTGRESQL_DB_PORT%/%OPENSHIFT_POSTGRESQL_DB_NAME%"
+                              maxActive="20"
+                              maxIdle="10"
+                              validationQuery="select 1" />
+                    <Manager pathname="" />
+                </Context>
+            </Host>
+
+        </Engine>
+    </Service>
+</Server>
+
